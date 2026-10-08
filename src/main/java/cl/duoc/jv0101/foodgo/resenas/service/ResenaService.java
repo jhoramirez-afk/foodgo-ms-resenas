@@ -3,10 +3,12 @@ package cl.duoc.jv0101.foodgo.resenas.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import cl.duoc.jv0101.foodgo.resenas.model.Resena;
 import cl.duoc.jv0101.foodgo.resenas.repository.ResenaRepository;
 
 @Service
+@Transactional
 public class ResenaService {
 
     private final ResenaRepository repository;
@@ -15,15 +17,18 @@ public class ResenaService {
         this.repository = repository;
     }
 
+    @Transactional(readOnly = true)
     public List<Resena> findAll() {
         return repository.findAll();
     }
 
+    @Transactional(readOnly = true)
     public Optional<Resena> findById(Long id) {
         return repository.findById(id);
     }
 
     public Resena create(Resena recurso) {
+        recurso.setId(null);
         return repository.save(recurso);
     }
 
