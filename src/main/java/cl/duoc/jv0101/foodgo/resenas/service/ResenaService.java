@@ -29,6 +29,7 @@ public class ResenaService {
 
     public Resena create(Resena recurso) {
         recurso.setId(null);
+        recurso.getRespuestas().forEach(item -> item.setId(null));
         return repository.save(recurso);
     }
 

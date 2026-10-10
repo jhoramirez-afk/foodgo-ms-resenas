@@ -1,5 +1,12 @@
 package cl.duoc.jv0101.foodgo.resenas.model;
 
+import jakarta.validation.constraints.DecimalMax;
+import jakarta.validation.constraints.DecimalMin;
+import jakarta.validation.constraints.Digits;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToMany;
@@ -12,7 +19,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
 import java.math.BigDecimal;
 
 
@@ -24,12 +30,19 @@ public class Resena {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "El pedido es obligatorio")
+    @NotBlank(message = "Pedido es obligatorio")
+    @Size(max = 255, message = "El campo admite hasta 255 caracteres")
     @Column(nullable = false)
     private String pedido;
-    @Column
+    @NotBlank(message = "Comentario es obligatorio")
+    @Size(max = 255, message = "El campo admite hasta 255 caracteres")
+    @Column(nullable = false)
     private String comentario;
-    @Column
+    @NotNull(message = "Calificación es obligatoria")
+    @DecimalMin(value = "1", message = "La calificación mínima es 1")
+    @DecimalMax(value = "5", message = "La calificación máxima es 5")
+    @Digits(integer = 1, fraction = 0, message = "La calificación debe ser un número entero de 1 a 5")
+    @Column(nullable = false, precision = 1, scale = 0)
     private BigDecimal calificacion;
 
     @Valid
