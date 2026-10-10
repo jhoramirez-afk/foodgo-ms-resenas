@@ -33,10 +33,10 @@ public class ResenaSteps {
         return "http://localhost:" + port + "/api/resenas";
     }
 
-    private HttpEntity<Map<String, String>> body(String valor) {
+    private HttpEntity<Map<String, Object>> body(String valor) {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        return new HttpEntity<>(Map.of("pedido", valor), headers);
+        return new HttpEntity<>(Map.of("pedido", valor, "comentario", "Las hamburguesas llegaron calientes y el repartidor encontró la dirección sin problemas.", "calificacion", 5), headers);
     }
 
     @Given("el servicio {string} está disponible")
