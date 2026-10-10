@@ -31,7 +31,7 @@ class ResenaServiceTest {
         r.setId(1L);
         r.setPedido("Demo");
         r.setComentario("valor");
-        r.setCalificacion(BigDecimal.TEN);
+        r.setCalificacion(BigDecimal.valueOf(5));
         return r;
     }
 

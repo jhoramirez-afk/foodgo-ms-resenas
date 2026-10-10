@@ -42,7 +42,7 @@ class ResenaControllerTest {
         r.setId(id);
         r.setPedido("Demo");
         r.setComentario("valor");
-        r.setCalificacion(BigDecimal.TEN);
+        r.setCalificacion(BigDecimal.valueOf(5));
         return r;
     }
 
